@@ -1,0 +1,27 @@
+<h5 class="card-title">Actualizar tipo de cambio</h5>
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="formUpdate" (ngSubmit)="execute()">
+      <div class="mb-3">
+        <div class="form-group">
+          <label for="idCurrency" class="form-label">ID</label>
+          <input type="text" required class="form-control" id="idCurrency" formControlName="idCurrency" placeholder="1" max="1">
+          <div class="form-text" *ngIf="f.idCurrency.errors?.pattern">Ingresar solo numero</div>
+        </div>
+      </div>
+      <div class=" mb-3">
+        <label for="exchangeRateOrigin" class="form-label">Valor unitario Origen</label>
+        <input type="text" required class="form-control" id="exchangeRateOrigin" formControlName="exchangeRateOrigin"
+               placeholder="2.0">
+        <div class="form-text" *ngIf="f.exchangeRateOrigin.errors?.pattern">Ingresar solo numero</div>
+      </div>
+      <div class=" mb-3">
+        <label for="exchangeRateDestination" class="form-label">Valor unitario Destino</label>
+        <input type="text" required class="form-control" id="exchangeRateDestination" formControlName="exchangeRateDestination"
+               placeholder="2.0">
+        <div class="form-text" *ngIf="f.exchangeRateDestination.errors?.pattern">Ingresar solo numero</div>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="formUpdate.status =='INVALID'">Actualizar</button>
+    </form>
+  </div>
+</div>

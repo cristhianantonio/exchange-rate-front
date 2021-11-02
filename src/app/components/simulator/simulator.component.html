@@ -1,0 +1,53 @@
+<h5 class="card-title">Cambio de moneda</h5>
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="formSimulator" (ngSubmit)="execute()">
+      <div class="mb-3">
+        <div class="form-group">
+          <label for="monto" class="form-label">Monto</label>
+          <input type="text" required class="form-control" id="monto" formControlName="monto" placeholder="100.0">
+          <div class="form-text" *ngIf="f.monto.errors?.pattern">Ingresar solo numeros</div>
+        </div>
+      </div>
+      <div class=" mb-3">
+        <label for="monedaOrigen" class="form-label">Moneda origen</label>
+        <input type="text" required class="form-control" id="monedaOrigen" formControlName="monedaOrigen"
+               placeholder="PEN" maxlength="3">
+        <div class="form-text" *ngIf="f.monedaOrigen.errors?.pattern">Ingresar solo texto</div>
+      </div>
+      <div class="mb-3">
+        <label for="monedaDestino" class="form-label">Moneda destino</label>
+        <input type="text" required class="form-control" id="monedaDestino" formControlName="monedaDestino"
+               placeholder="USD" maxlength="3">
+        <div class="form-text" *ngIf="f.monedaDestino.errors?.pattern">Ingresar solo texto</div>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="formSimulator.status =='INVALID'">Calcular</button>
+    </form>
+    <div *ngIf="rs!=null">
+      <br>
+      <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+          <th scope="col">Monto</th>
+          <th scope="col">MontoConTipoCambio</th>
+          <th scope="col">MonedaOrigen</th>
+          <th scope="col">MonedaDestino</th>
+          <th scope="col">TipoCambioOrigen</th>
+          <th scope="col">TipoCambioDestino</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>{{rs.monto}}</td>
+          <td>{{rs.montoConTipoCambio}}</td>
+          <td>{{rs.monedaOrigen}}</td>
+          <td>{{rs.monedaDestino}}</td>
+          <td> 1 {{rs.monedaOrigen}} = {{rs.TipoCambioOrigen}}</td>
+          <td> 1 {{rs.monedaDestino}} = {{rs.TipoCambioDestino}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
